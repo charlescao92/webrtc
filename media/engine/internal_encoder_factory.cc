@@ -38,13 +38,16 @@ namespace webrtc {
 
 std::vector<SdpVideoFormat> InternalEncoderFactory::SupportedFormats() {
   std::vector<SdpVideoFormat> supported_codecs;
-  for (const webrtc::SdpVideoFormat& format : webrtc::SupportedH264Codecs())
-    supported_codecs.push_back(format);
-  supported_codecs.push_back(SdpVideoFormat(cricket::kVp8CodecName));
-  for (const webrtc::SdpVideoFormat& format : webrtc::SupportedVP9Codecs())
-    supported_codecs.push_back(format);
-  if (kIsLibaomAv1EncoderSupported)
-    supported_codecs.push_back(SdpVideoFormat(cricket::kAv1CodecName));
+#if WEBRTC_USE_H265
+  supported_codecs.push_back(SdpVideoFormat(cricket::kH265CodecName));
+#endif
+  // for (const webrtc::SdpVideoFormat& format : webrtc::SupportedH264Codecs())
+  //   supported_codecs.push_back(format);
+  // supported_codecs.push_back(SdpVideoFormat(cricket::kVp8CodecName));
+  // for (const webrtc::SdpVideoFormat& format : webrtc::SupportedVP9Codecs())
+  //   supported_codecs.push_back(format);
+  // if (kIsLibaomAv1EncoderSupported)
+  //   supported_codecs.push_back(SdpVideoFormat(cricket::kAv1CodecName));
   return supported_codecs;
 }
 

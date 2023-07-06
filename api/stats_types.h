@@ -111,7 +111,6 @@ class RTC_EXPORT StatsReport {
     kStatsValueNameJitterBufferDelay,
     kStatsValueNameMediaType,
     kStatsValueNamePacketsLost,
-    kStatsValueNameFractionLost,
     kStatsValueNamePacketsReceived,
     kStatsValueNamePacketsSent,
     kStatsValueNameProtocol,

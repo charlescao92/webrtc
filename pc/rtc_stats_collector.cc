@@ -526,9 +526,6 @@ void SetOutboundRTPStreamStatsFromMediaSenderInfo(
   outbound_stats->retransmitted_bytes_sent =
       media_sender_info.retransmitted_bytes_sent;
   outbound_stats->nack_count = media_sender_info.nacks_rcvd;
-  outbound_stats->rtt_ms = media_sender_info.rtt_ms;
-  outbound_stats->packets_lost = media_sender_info.packets_lost;
-  outbound_stats->fraction_lost = media_sender_info.fraction_lost;
 }
 
 void SetOutboundRTPStreamStatsFromVoiceSenderInfo(

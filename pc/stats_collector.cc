@@ -243,7 +243,7 @@ void ExtractStats(const cricket::VoiceSenderInfo& info,
   const FloatForAdd floats[] = {
       {StatsReport::kStatsValueNameTotalAudioEnergy, info.total_input_energy},
       {StatsReport::kStatsValueNameTotalSamplesDuration,info.total_input_duration},
-      {StatsReport::kStatsValueNameFractionLost, info.fraction_lost}};
+    };
 
   RTC_DCHECK_GE(info.audio_level, 0);
   const IntForAdd ints[] = {
@@ -373,8 +373,6 @@ void ExtractStats(const cricket::VideoSenderInfo& info,
   if (info.qp_sum)
     report->AddInt(StatsReport::kStatsValueNameQpSum, *info.qp_sum);
 
-  report->AddFloat(StatsReport::kStatsValueNameFractionLost, info.fraction_lost);
-
   const IntForAdd ints[] = {
       {StatsReport::kStatsValueNameAdaptationChanges, info.adapt_changes},
       {StatsReport::kStatsValueNameAvgEncodeMs, info.avg_encode_ms},
@@ -387,7 +385,6 @@ void ExtractStats(const cricket::VideoSenderInfo& info,
       {StatsReport::kStatsValueNameNacksReceived, info.nacks_rcvd},
       {StatsReport::kStatsValueNamePacketsLost, info.packets_lost},
       {StatsReport::kStatsValueNamePacketsSent, info.packets_sent},
-      {StatsReport::kStatsValueNameFractionLost, info.fraction_lost},
       {StatsReport::kStatsValueNamePlisReceived, info.plis_rcvd},
       {StatsReport::kStatsValueNameFramesEncoded, info.frames_encoded},
       {StatsReport::kStatsValueNameHugeFramesSent, info.huge_frames_sent},

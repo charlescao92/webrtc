@@ -17,6 +17,7 @@
 #include "media/base/media_constants.h"
 #include "modules/video_coding/codecs/av1/libaom_av1_decoder.h"
 #include "modules/video_coding/codecs/h264/include/h264.h"
+#include "modules/video_coding/codecs/h265/include/h265.h"
 #include "modules/video_coding/codecs/vp8/include/vp8.h"
 #include "modules/video_coding/codecs/vp9/include/vp9.h"
 #include "rtc_base/checks.h"
@@ -27,13 +28,16 @@ namespace webrtc {
 std::vector<SdpVideoFormat> InternalDecoderFactory::GetSupportedFormats()
     const {
   std::vector<SdpVideoFormat> formats;
-  formats.push_back(SdpVideoFormat(cricket::kVp8CodecName));
-  for (const SdpVideoFormat& format : SupportedVP9DecoderCodecs())
-    formats.push_back(format);
-  for (const SdpVideoFormat& h264_format : SupportedH264Codecs())
-    formats.push_back(h264_format);
-  if (kIsLibaomAv1DecoderSupported)
-    formats.push_back(SdpVideoFormat(cricket::kAv1CodecName));
+#ifdef WEBRTC_USE_H265
+  formats.push_back(SdpVideoFormat(cricket::kH265CodecName));
+#endif
+  // formats.push_back(SdpVideoFormat(cricket::kVp8CodecName));
+  // for (const SdpVideoFormat& format : SupportedVP9DecoderCodecs())
+  //  formats.push_back(format);
+  // for (const SdpVideoFormat& h264_format : SupportedH264Codecs())
+  //  formats.push_back(h264_format);
+  // if (kIsLibaomAv1DecoderSupported)
+  //   formats.push_back(SdpVideoFormat(cricket::kAv1CodecName));
   return formats;
 }
 
@@ -69,6 +73,8 @@ std::unique_ptr<VideoDecoder> InternalDecoderFactory::CreateVideoDecoder(
     return VP9Decoder::Create();
   if (absl::EqualsIgnoreCase(format.name, cricket::kH264CodecName))
     return H264Decoder::Create();
+  if (absl::EqualsIgnoreCase(format.name, cricket::kH265CodecName))
+    return H265Decoder::Create();
   if (kIsLibaomAv1DecoderSupported &&
       absl::EqualsIgnoreCase(format.name, cricket::kAv1CodecName))
     return CreateLibaomAv1Decoder();

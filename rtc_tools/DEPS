@@ -28,6 +28,7 @@ specific_include_rules = {
     "+modules/video_coding/include/video_error_codes.h",
     "+modules/video_coding/utility/ivf_file_writer.h",
     "+modules/video_coding/codecs/h264/include/h264.h",
+    "+modules/video_coding/codecs/h265/include/h265.h",
   ],
   ".*video_replay\.cc": [
     "+modules/video_coding/utility/ivf_file_writer.h",

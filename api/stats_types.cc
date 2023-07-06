@@ -384,8 +384,6 @@ const char* StatsReport::Value::display_name() const {
       return "packetsReceived";
     case kStatsValueNamePacketsLost:
       return "packetsLost";
-    case kStatsValueNameFractionLost:
-      return "fractionLost";
     case kStatsValueNameProtocol:
       return "protocol";
     case kStatsValueNameTotalSamplesReceived:

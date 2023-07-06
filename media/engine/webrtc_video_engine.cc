@@ -104,7 +104,9 @@ void AddDefaultFeedbackParams(VideoCodec* codec,
   codec->AddFeedbackParam(FeedbackParam(kRtcpFbParamCcm, kRtcpFbCcmParamFir));
   codec->AddFeedbackParam(FeedbackParam(kRtcpFbParamNack, kParamValueEmpty));
   codec->AddFeedbackParam(FeedbackParam(kRtcpFbParamNack, kRtcpFbNackParamPli));
-  if (codec->name == kVp8CodecName &&
+  // m108加上了h264和h265 
+  if ((codec->name == kVp8CodecName || codec->name == kH264CodecName ||
+       codec->name == kH265CodecName) &&
       IsEnabled(trials, "WebRTC-RtcpLossNotification")) {
     codec->AddFeedbackParam(FeedbackParam(kRtcpFbParamLntf, kParamValueEmpty));
   }

@@ -111,6 +111,7 @@ bool IsNonVolatile(RTPExtensionType type) {
     case kRtpExtensionMid:
     case kRtpExtensionGenericFrameDescriptor00:
     case kRtpExtensionGenericFrameDescriptor02:
+    case kRtpExtensionPictureId:
       return true;
     case kRtpExtensionInbandComfortNoise:
     case kRtpExtensionAbsoluteCaptureTime:

@@ -18,6 +18,7 @@
 #include <vector>
 
 #include "modules/video_coding/codecs/h264/include/h264_globals.h"
+#include "modules/video_coding/codecs/h265/include/h265_globals.h"
 #include "modules/video_coding/codecs/vp9/include/vp9_globals.h"
 #include "modules/video_coding/include/video_coding.h"
 #include "modules/video_coding/packet.h"
@@ -65,7 +66,9 @@ class VCMSessionInfo {
   int Tl0PicId() const;
 
   std::vector<NaluInfo> GetNaluInfos() const;
-
+#ifdef WEBRTC_USE_H265
+  std::vector<H265NaluInfo> GetH265NaluInfos() const;
+#endif
   void SetGofInfo(const GofInfoVP9& gof_info, size_t idx);
 
  private:

@@ -168,6 +168,8 @@ rtc_library("video_coding") {
     "h264_sprop_parameter_sets.h",
     "h264_sps_pps_tracker.cc",
     "h264_sps_pps_tracker.h",
+    "h265_vps_sps_pps_tracker.cc",
+    "h265_vps_sps_pps_tracker.h",
     "include/video_codec_initializer.h",
     "inter_frame_delay.cc",
     "inter_frame_delay.h",
@@ -473,6 +475,48 @@ rtc_library("webrtc_h264") {
     deps += [
       "//third_party/ffmpeg",
       "//third_party/openh264:encoder",
+    ]
+    if (!build_with_mozilla) {
+      deps += [ "../../media:rtc_media_base" ]
+    }
+  }
+}
+
+rtc_library("webrtc_h265") {
+  visibility = [ "*" ]
+  sources = [
+    "codecs/h265/h265.cc",
+    "codecs/h265/h265_decoder_impl.cc",
+    "codecs/h265/h265_decoder_impl.h",
+    "codecs/h265/h265_encoder_impl.cc",
+    "codecs/h265/h265_encoder_impl.h",
+    "codecs/h265/include/h265.h",
+  ]
+
+  deps = [
+    ":video_codec_interface",
+    ":video_coding_utility",
+    "../../api/video:video_frame",
+    "../../api/video:video_frame_i010",
+    "../../api/video:video_rtp_headers",
+    "../../api/video_codecs:video_codecs_api",
+    "../../common_video",
+    "../../media:rtc_media_base",
+    "../../rtc_base",
+    "../../rtc_base:checks",
+    "../../rtc_base/system:rtc_export",
+    "../../system_wrappers:field_trial",
+    "../../system_wrappers:metrics",
+    "//third_party/libyuv",
+  ]
+  absl_deps = [
+    "//third_party/abseil-cpp/absl/strings",
+    "//third_party/abseil-cpp/absl/types:optional",
+  ]
+
+  if (rtc_use_h265) {
+    deps += [
+      "//third_party/ffmpeg"
     ]
     if (!build_with_mozilla) {
       deps += [ "../../media:rtc_media_base" ]
@@ -940,6 +984,7 @@ if (rtc_include_tests) {
       ":video_coding_utility",
       ":videocodec_test_impl",
       ":webrtc_h264",
+      ":webrtc_h265",
       ":webrtc_libvpx_interface",
       ":webrtc_multiplex",
       ":webrtc_vp8",
@@ -1072,6 +1117,7 @@ if (rtc_include_tests) {
       ":videocodec_test_impl",
       ":videocodec_test_stats_impl",
       ":webrtc_h264",
+      ":webrtc_h265",
       ":webrtc_vp8",
       ":webrtc_vp8_temporal_layers",
       ":webrtc_vp9",

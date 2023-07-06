@@ -830,10 +830,7 @@ WEBRTC_RTCSTATS_IMPL(
     &fir_count,
     &pli_count,
     &nack_count,
-    &qp_sum,
-    &rtt_ms,
-    &packets_lost,
-    &fraction_lost
+    &qp_sum
    )  
 // clang-format on
 
@@ -872,10 +869,7 @@ RTCOutboundRTPStreamStats::RTCOutboundRTPStreamStats(std::string&& id,
       fir_count("firCount"),
       pli_count("pliCount"),
       nack_count("nackCount"),
-      qp_sum("qpSum"),
-      rtt_ms("rttMs"),
-      packets_lost("packetsLost"),
-      fraction_lost("fractionLost") {}
+      qp_sum("qpSum"){}
 
 RTCOutboundRTPStreamStats::RTCOutboundRTPStreamStats(
     const RTCOutboundRTPStreamStats& other)
@@ -908,10 +902,7 @@ RTCOutboundRTPStreamStats::RTCOutboundRTPStreamStats(
       fir_count(other.fir_count),
       pli_count(other.pli_count),
       nack_count(other.nack_count),
-      qp_sum(other.qp_sum),
-      packets_lost(other.packets_lost),
-      rtt_ms(other.rtt_ms),
-      fraction_lost(other.fraction_lost) {}
+      qp_sum(other.qp_sum) {}
 
 RTCOutboundRTPStreamStats::~RTCOutboundRTPStreamStats() {}
 
