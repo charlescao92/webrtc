@@ -102,6 +102,8 @@ class WebRtcVoiceEngine final : public VoiceEngineInterface {
   webrtc::AudioProcessing* apm() const;
   webrtc::AudioState* audio_state();
 
+  rtc::scoped_refptr<webrtc::AudioDeviceModule> GetAdm() override { return adm_; }
+
   std::vector<AudioCodec> CollectCodecs(
       const std::vector<webrtc::AudioCodecSpec>& specs) const;
 

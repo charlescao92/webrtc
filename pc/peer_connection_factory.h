@@ -45,6 +45,8 @@
 #include "rtc_base/rtc_certificate_generator.h"
 #include "rtc_base/thread.h"
 #include "rtc_base/thread_annotations.h"
+#include "modules/audio_device/include/audio_device.h"
+#include "media/base/media_engine.h"
 
 namespace rtc {
 class BasicNetworkManager;
@@ -54,6 +56,7 @@ class BasicPacketSocketFactory;
 namespace webrtc {
 
 class RtcEventLog;
+class AudioDeviceModule;
 
 class PeerConnectionFactory : public PeerConnectionFactoryInterface {
  public:
@@ -94,6 +97,10 @@ class PeerConnectionFactory : public PeerConnectionFactoryInterface {
 
   bool StartAecDump(FILE* file, int64_t max_size_bytes) override;
   void StopAecDump() override;
+
+  rtc::scoped_refptr<AudioDeviceModule> GetAdmPtr() override {
+	 return context_->channel_manager()->media_engine()->voice().GetAdm();
+  }
 
   SctpTransportFactoryInterface* sctp_transport_factory() {
     return context_->sctp_transport_factory();

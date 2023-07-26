@@ -17,6 +17,7 @@
 
 #include "api/peer_connection_interface.h"
 #include "pc/proxy.h"
+#include "modules/audio_device/include/audio_device.h"
 
 namespace webrtc {
 
@@ -49,6 +50,8 @@ PROXY_METHOD2(rtc::scoped_refptr<AudioTrackInterface>,
               CreateAudioTrack,
               const std::string&,
               AudioSourceInterface*)
+PROXY_METHOD0(rtc::scoped_refptr<AudioDeviceModule>,
+              GetAdmPtr)
 PROXY_SECONDARY_METHOD2(bool, StartAecDump, FILE*, int64_t)
 PROXY_SECONDARY_METHOD0(void, StopAecDump)
 END_PROXY_MAP(PeerConnectionFactory)

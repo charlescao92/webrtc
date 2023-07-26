@@ -144,6 +144,8 @@ class Thread;
 
 namespace webrtc {
 
+class AudioDeviceModule;
+
 // MediaStream container interface.
 class StreamCollectionInterface : public rtc::RefCountInterface {
  public:
@@ -1541,6 +1543,9 @@ class RTC_EXPORT PeerConnectionFactoryInterface
 
   // Stops logging the AEC dump.
   virtual void StopAecDump() = 0;
+
+  // Get AudioDeviceModule ptr
+  virtual rtc::scoped_refptr<AudioDeviceModule> GetAdmPtr() = 0;
 
  protected:
   // Dtor and ctor protected as objects shouldn't be created or deleted via

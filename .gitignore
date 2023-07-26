@@ -72,3 +72,5 @@
 /xcodebuild
 /.vscode
 !webrtc/*
+/.vs/
+/soup/
